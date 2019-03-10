@@ -1,26 +1,49 @@
-# Simple Cognito Login
+# A simple cognito login page for node served page
 
-This simple web application uses the AWS cognito javascript SDK to log a user into a userpool.
+## Create User Pool in Cognito
 
-See: https://github.com/aws/amazon-cognito-identity-js
+From AWS Console, create a new user pool. 
 
-Once the user has logged in (and changed password if required on first login) - the javascript prints out the Access Token and ID Token.
+N.B. At one stage, you will create a new app client. Make sure that you uncheck 'generate client secret'
 
-The ID token is cached and can be used for API Gateway access.
-
-The ID Token can be included in an Authorization header for testing an API Gateway secured by the user pool in question.
-
-e.g.
+## To launch the login page
 
 ```
-GET: https://3hmbdb06s3.execute-api.ap-northeast-1.amazonaws.com/testing/datasets
+npm install
+node server.js
 ```
 
-with headers:
+## Setup
+
+### Configuration
+
+In config.js, you will need to set the two variables:
 
 ```
-{
-Authorization: <id_token>,
-Content-Type: application/json
-}
+AWSCognito.config.region = 'ap-northeast-1';
+poolData = {
+    UserPoolId : <YOUR USER POOL ID>,
+    ClientId : <YOUR CLIENT ID>
+};
 ```
+
+All the magic happens by including the following code in your main HTML page:
+
+```
+	<script src="https://sdk.amazonaws.com/js/aws-sdk-2.6.10.min.js"></script>
+	<script src="js/aws-cognito-sdk.min.js"></script>
+	<script src="js/amazon-cognito-identity.min.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/common.js"></script>
+	<script type="text/javascript">
+	  $(document).ready(function(){
+	    checkLoggedIn();
+	  });
+</script>
+```
+
+## Account management
+
+- Accounts must be created in Cognito.
+- User will be forced to change password
+- User can change password via 'Forgot Password' link
