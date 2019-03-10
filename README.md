@@ -1,21 +1,20 @@
 # A simple cognito login page for node served page
 
-## Create User Pool in Cognito
+### Create User Pool in Cognito
 
 From AWS Console, create a new user pool. 
 
 N.B. At one stage, you will create a new app client. Make sure that you uncheck 'generate client secret'
 
-## To launch the login page
+### Getting started
 
 ```
 npm install
 node server.js
 ```
 
-## Setup
+### Setup
 
-### Configuration
 
 In config.js, you will need to set the two variables:
 
@@ -42,7 +41,7 @@ All the magic happens by including the following code in your main HTML page:
 </script>
 ```
 
-## Account management
+### Account management
 
 - Accounts must be created in Cognito.
 - User will be forced to change password

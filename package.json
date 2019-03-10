@@ -1,5 +1,5 @@
 {
-  "name": "Test Login",
+  "name": "test-login",
   "version": "1.0.0",
   "description": "Node server with simple cognito login",
   "main": "server.js",
